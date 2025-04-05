@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FireBase+Earning</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>FireBase+Earning</h1>
+    <p>Welcome to the Fake Earning App! Earn points by watching ads and share your referral link.</p>
+    
+    <div class="dashboard">
+      <p>Current Balance: <span id="balance">$0.00</span></p>
+      <button id="watchAdBtn">Watch Ad</button>
+      <button id="withdrawBtn">Withdraw</button>
+    </div>
+    
+    <div id="referralSection">
+      <p>Your Referral Earnings: <span id="referralEarnings">$0.00</span></p>
+      <button id="shareReferralBtn">Share Referral Link</button>
+    </div>
+
+    <div id="fakeWithdrawalMsg" style="display:none;">
+      <p>Your withdrawal will be processed in 3 days. Fake transaction in progress...</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
