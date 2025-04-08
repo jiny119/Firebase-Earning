@@ -13,7 +13,6 @@
     window.open('ad.html', '_blank');
   });
 </script>
-  <link rel="stylesheet" href="/styles.css">
 <body>
   <div class="container">
     <h1>FireBase+Earning</h1>
@@ -35,7 +34,27 @@
   
   <button onclick="window.location.href='withdrawal.html'">Go to Withdrawal Page</button>
   <button onclick="window.location.href='referral.html'">Go to Referral Page</button>
-  
+  <p>Current Balance: <span id="balance">$0.00</span></p>
+<button id="watchAdBtn">Watch Ad</button>
+
+<script>
+  // Pehle se saved balance load karo (dollar format me)
+  let balance = parseFloat(localStorage.getItem('balance')) || 0.00;
+  document.getElementById('balance').innerText = `$${balance.toFixed(2)}`;
+
+  // Jab Watch Ad button pe click ho
+  document.getElementById('watchAdBtn').addEventListener('click', function () {
+    // $0.15 add karo
+    balance += 0.15;
+    // Save karo localStorage me
+    localStorage.setItem('balance', balance.toFixed(2));
+    // Update karo screen pe
+    document.getElementById('balance').innerText = `$${balance.toFixed(2)}`;
+
+    // Ad page open karo
+    window.open('ad.html', '_blank');
+  });
+</script>
   <script>
     // YouTube ad video links
     const adLinks = [
