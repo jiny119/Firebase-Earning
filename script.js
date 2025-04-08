@@ -17,11 +17,20 @@ document.getElementById("watchAdBtn").addEventListener("click", function() {
   updateBalance();
   
   // Free Ads Link (example from a free ad provider)
+  let adContainer = document.getElementById("adContainer");
+  
+  // Remove previous ad if it exists
+  let existingAd = adContainer.querySelector("iframe");
+  if (existingAd) {
+    adContainer.removeChild(existingAd);
+  }
+  
+  // Create and append new ad iframe
   let adIframe = document.createElement("iframe");
   adIframe.src = "https://youtu.be/nluXR6rTWF0?si=audSIGdgcE3IdG8R"; // Example: Replace this with actual ad link (YouTube ad or similar)
   adIframe.width = "300";
   adIframe.height = "250";
-  document.getElementById("adContainer").appendChild(adIframe);
+  adContainer.appendChild(adIframe);
 
   alert("Ad watched! You earned $0.30.");
 });
@@ -31,8 +40,8 @@ document.getElementById("withdrawBtn").addEventListener("click", function() {
   if (balance >= 50) {
     document.getElementById("fakeWithdrawalMsg").style.display = "block";
     setTimeout(function() {
-      let withdrawalMethod = prompt("Choose a withdrawal method: (JazzCash, EasyPaisa, Payoneer)");
-      if (withdrawalMethod === "JazzCash" || withdrawalMethod === "EasyPaisa" || withdrawalMethod === "Payoneer") {
+      let withdrawalMethod = prompt("Choose a withdrawal method: (JazzCash, EasyPaisa, Payoneer, PayPal)");
+      if (withdrawalMethod === "JazzCash" || withdrawalMethod === "EasyPaisa" || withdrawalMethod === "Payoneer" || withdrawalMethod === "PayPal") {
         alert(`Withdrawal request sent! Processing will take 3 days. Method: ${withdrawalMethod}`);
       } else {
         alert("Invalid withdrawal method.");
@@ -47,6 +56,11 @@ document.getElementById("withdrawBtn").addEventListener("click", function() {
 document.getElementById("shareReferralBtn").addEventListener("click", function() {
   referralEarnings += 1;  // Example earnings per referral
   updateReferralEarnings();
+  
+  // Assuming you will share a URL for referral
+  let referralLink = "https://example.com/referral?code=12345";  // Replace with actual referral URL
+  prompt("Share this referral link to earn $1!", referralLink);
+
   alert("Referral link shared! You earned $1.");
 });
 
