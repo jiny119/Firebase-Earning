@@ -18,12 +18,13 @@
   </div>
 
   <script>
-    let balance = 0;
-    let referralsCount = 0;
+    // Initial values for balance and referrals
+    let balance = 60; // Example balance, replace with dynamic balance from your app
+    let referralsCount = 12; // Example referrals count, replace with dynamic count from your app
 
-    // Update balance and referrals count based on your app's logic
+    // Update balance and referrals count on page load or whenever needed
     function updateBalance() {
-      // This should be updated from the main page or app state
+      // This should be updated dynamically based on the user's account data
     }
 
     document.getElementById("withdrawBtn").addEventListener("click", function() {
@@ -32,12 +33,14 @@
           document.getElementById("fakeWithdrawalMsg").style.display = "block";
           setTimeout(function() {
             let withdrawalMethod = prompt("Choose a withdrawal method: (JazzCash, EasyPaisa, Payoneer, PayPal)");
+
+            // Check if the entered withdrawal method is valid
             if (withdrawalMethod === "JazzCash" || withdrawalMethod === "EasyPaisa" || withdrawalMethod === "Payoneer" || withdrawalMethod === "PayPal") {
               alert(`Withdrawal request sent! Processing will take 3 days. Method: ${withdrawalMethod}`);
             } else {
-              alert("Invalid withdrawal method.");
+              alert("Invalid withdrawal method. Please choose one of the listed methods.");
             }
-          }, 3000); // Fake transaction after 3 seconds
+          }, 3000); // Simulated 3-second delay for processing
         } else {
           alert("You need at least $50 to withdraw.");
         }
