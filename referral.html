@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Referral Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="referralSection">
+    <h3>Referral Earnings: <span id="referralEarnings">$0.00</span></h3>
+    <h3>Total Referrals: <span id="referralsCount">0</span></h3>
+    <button id="shareReferralBtn">Share Referral Link</button>
+    <p id="referralMessage" style="display:none;">Referral link copied to clipboard!</p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    let referralEarnings = 0;
+    let referralsCount = 0;
+
+    // Update Referral Earnings and Count
+    function updateReferralEarnings() {
+      document.getElementById("referralEarnings").innerText = `$${referralEarnings.toFixed(2)}`;
+      document.getElementById("referralsCount").innerText = referralsCount;
+    }
+
+    // Referral logic (Copy referral link)
+    document.getElementById("shareReferralBtn").addEventListener("click", function() {
+      referralEarnings += 1;  // Example earnings per referral
+      referralsCount++; // Increment referral count
+      updateReferralEarnings();
+
+      // Copy referral link to clipboard
+      let referralLink = "https://yourwebsite.com/referral?code=12345"; // Example referral link
+      navigator.clipboard.writeText(referralLink).then(function() {
+        document.getElementById("referralMessage").style.display = "block";
+      }, function() {
+        alert("Failed to copy referral link.");
+      });
+    });
+
+    // Initial setup
+    updateReferralEarnings();
+  </script>
+</body>
+</html>
