@@ -6,13 +6,7 @@
   <title>FireBase+Earning</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-  <button id="watchAdBtn">Watch Ad</button>
 
-<script>
-  document.getElementById('watchAdBtn').addEventListener('click', function() {
-    window.open('ad.html', '_blank');
-  });
-</script>
 <body>
   <div class="container">
     <h1>FireBase+Earning</h1>
@@ -34,29 +28,13 @@
   
   <button onclick="window.location.href='withdrawal.html'">Go to Withdrawal Page</button>
   <button onclick="window.location.href='referral.html'">Go to Referral Page</button>
-  <p>Current Balance: <span id="balance">$0.00</span></p>
-<button id="watchAdBtn">Watch Ad</button>
 
-<script>
-  // Pehle se saved balance load karo (dollar format me)
-  let balance = parseFloat(localStorage.getItem('balance')) || 0.00;
-  document.getElementById('balance').innerText = `$${balance.toFixed(2)}`;
-
-  // Jab Watch Ad button pe click ho
-  document.getElementById('watchAdBtn').addEventListener('click', function () {
-    // $0.15 add karo
-    balance += 0.15;
-    // Save karo localStorage me
-    localStorage.setItem('balance', balance.toFixed(2));
-    // Update karo screen pe
+  <script>
+    // Load the balance from localStorage if it exists
+    let balance = parseFloat(localStorage.getItem('balance')) || 0.00;
     document.getElementById('balance').innerText = `$${balance.toFixed(2)}`;
 
-    // Ad page open karo
-    window.open('ad.html', '_blank');
-  });
-</script>
-  <script>
-    // YouTube ad video links
+    // Array of YouTube ad video links
     const adLinks = [
       "https://www.youtube.com/watch?v=EfdvmBgWEvE",
       "https://www.youtube.com/shorts/nR3mHoeaNrU",
@@ -64,8 +42,18 @@
       "https://www.youtube.com/shorts/nPN3DQnrUGw"
     ];
 
+    // Watch Ad button click logic
     document.getElementById('watchAdBtn').addEventListener('click', function() {
-      // Random ad open in new tab
+      // Add $0.15 to balance
+      balance += 0.15;
+
+      // Save the updated balance to localStorage
+      localStorage.setItem('balance', balance.toFixed(2));
+
+      // Update the displayed balance
+      document.getElementById('balance').innerText = `$${balance.toFixed(2)}`;
+
+      // Open a random ad link in a new tab
       const randomAd = adLinks[Math.floor(Math.random() * adLinks.length)];
       window.open(randomAd, '_blank');
     });
