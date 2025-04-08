@@ -43,8 +43,8 @@ document.getElementById("withdrawBtn").addEventListener("click", function() {
     if (balance >= 50) {
       document.getElementById("fakeWithdrawalMsg").style.display = "block";
       setTimeout(function() {
-        let withdrawalMethod = prompt("Choose a withdrawal method: (JazzCash, EasyPaisa, Payoneer, PayPal)");
-        if (withdrawalMethod === "JazzCash" || withdrawalMethod === "EasyPaisa" || withdrawalMethod === "Payoneer" || withdrawalMethod === "PayPal") {
+        let withdrawalMethod = prompt("Choose a withdrawal method: (JazzCash, EasyPaisa, Payoneer)");
+        if (withdrawalMethod === "JazzCash" || withdrawalMethod === "EasyPaisa" || withdrawalMethod === "Payoneer") {
           alert(`Withdrawal request sent! Processing will take 3 days. Method: ${withdrawalMethod}`);
         } else {
           alert("Invalid withdrawal method.");
