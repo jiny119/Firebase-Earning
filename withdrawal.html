@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdrawal Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="withdrawalSection">
+    <h3>Withdrawal</h3>
+    <p>You need at least 10 referrals and $50 to request a withdrawal.</p>
+    <button id="withdrawBtn">Request Withdrawal</button>
+  </div>
+
+  <div id="fakeWithdrawalMsg" style="display:none;">
+    <p>Withdrawal request is being processed...</p>
+  </div>
+
+  <script>
+    let balance = 0;
+    let referralsCount = 0;
+
+    // Update balance and referrals count based on your app's logic
+    function updateBalance() {
+      // This should be updated from the main page or app state
+    }
+
+    document.getElementById("withdrawBtn").addEventListener("click", function() {
+      if (referralsCount >= 10) {
+        if (balance >= 50) {
+          document.getElementById("fakeWithdrawalMsg").style.display = "block";
+          setTimeout(function() {
+            let withdrawalMethod = prompt("Choose a withdrawal method: (JazzCash, EasyPaisa, Payoneer, PayPal)");
+            if (withdrawalMethod === "JazzCash" || withdrawalMethod === "EasyPaisa" || withdrawalMethod === "Payoneer" || withdrawalMethod === "PayPal") {
+              alert(`Withdrawal request sent! Processing will take 3 days. Method: ${withdrawalMethod}`);
+            } else {
+              alert("Invalid withdrawal method.");
+            }
+          }, 3000); // Fake transaction after 3 seconds
+        } else {
+          alert("You need at least $50 to withdraw.");
+        }
+      } else {
+        alert("You need at least 10 referrals to withdraw.");
+      }
+    });
+  </script>
+</body>
+</html>
