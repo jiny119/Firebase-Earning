@@ -1,5 +1,6 @@
 let balance = 0;
 let referralEarnings = 0;
+let referralsCount = 0; // Track number of referrals
 
 // Update Balance on the page
 function updateBalance() {
@@ -9,6 +10,7 @@ function updateBalance() {
 // Update Referral Earnings on the page
 function updateReferralEarnings() {
   document.getElementById("referralEarnings").innerText = `$${referralEarnings.toFixed(2)}`;
+  document.getElementById("referralsCount").innerText = referralsCount; // Update the referral count display
 }
 
 // Watch ad logic (Free Ads Example)
@@ -37,31 +39,38 @@ document.getElementById("watchAdBtn").addEventListener("click", function() {
 
 // Fake withdrawal logic (With added withdrawal methods)
 document.getElementById("withdrawBtn").addEventListener("click", function() {
-  if (balance >= 50) {
-    document.getElementById("fakeWithdrawalMsg").style.display = "block";
-    setTimeout(function() {
-      let withdrawalMethod = prompt("Choose a withdrawal method: (JazzCash, EasyPaisa, Payoneer, PayPal)");
-      if (withdrawalMethod === "JazzCash" || withdrawalMethod === "EasyPaisa" || withdrawalMethod === "Payoneer" || withdrawalMethod === "PayPal") {
-        alert(`Withdrawal request sent! Processing will take 3 days. Method: ${withdrawalMethod}`);
-      } else {
-        alert("Invalid withdrawal method.");
-      }
-    }, 3000); // Fake transaction after 3 seconds
+  if (referralsCount >= 10) { // Ensure that user has 10 referrals to withdraw
+    if (balance >= 50) {
+      document.getElementById("fakeWithdrawalMsg").style.display = "block";
+      setTimeout(function() {
+        let withdrawalMethod = prompt("Choose a withdrawal method: (JazzCash, EasyPaisa, Payoneer, PayPal)");
+        if (withdrawalMethod === "JazzCash" || withdrawalMethod === "EasyPaisa" || withdrawalMethod === "Payoneer" || withdrawalMethod === "PayPal") {
+          alert(`Withdrawal request sent! Processing will take 3 days. Method: ${withdrawalMethod}`);
+        } else {
+          alert("Invalid withdrawal method.");
+        }
+      }, 3000); // Fake transaction after 3 seconds
+    } else {
+      alert("You need at least $50 to withdraw.");
+    }
   } else {
-    alert("You need at least $50 to withdraw.");
+    alert("You need at least 10 referrals to withdraw.");
   }
 });
 
-// Referral logic
+// Referral logic (Copy referral link)
 document.getElementById("shareReferralBtn").addEventListener("click", function() {
   referralEarnings += 1;  // Example earnings per referral
+  referralsCount++; // Increment referral count
   updateReferralEarnings();
-  
-  // Assuming you will share a URL for referral
-  let referralLink = "https://example.com/referral?code=12345";  // Replace with actual referral URL
-  prompt("Share this referral link to earn $1!", referralLink);
 
-  alert("Referral link shared! You earned $1.");
+  // Copy referral link to clipboard
+  let referralLink = "https://yourwebsite.com/referral?code=12345"; // Example referral link
+  navigator.clipboard.writeText(referralLink).then(function() {
+    alert("Referral link copied to clipboard! You earned $1.");
+  }, function() {
+    alert("Failed to copy referral link.");
+  });
 });
 
 // Initial balance setup
