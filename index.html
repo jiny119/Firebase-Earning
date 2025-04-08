@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <iframe src="ad.html" width="100%" height="400" frameborder="0"></iframe>
   <div class="container">
     <h1>FireBase+Earning</h1>
     <p>Welcome to the Earning App! Earn points by watching ads and share your referral link.</p>
@@ -24,24 +23,24 @@
     <div id="fakeWithdrawalMsg" style="display:none;">
       <p>Your withdrawal will be processed in 3 days. Transaction in progress...</p>
     </div>
-
-    <!-- This is where the ad will appear -->
-    <div id="adContainer">
-      <!-- Replacing with your provided YouTube video links -->
-      <iframe src="https://youtu.be/EfdvmBgWEvE?si=qYT6HDvKy3bcsle1" width="100%" height="400" frameborder="0"></iframe>
-      <iframe src="https://youtube.com/shorts/nR3mHoeaNrU?si=AiAgTFZzamOUHeJ1" width="100%" height="400" frameborder="0"></iframe>
-      <iframe src="https://youtu.be/trr3AC1jiEk?si=bWn2mBIli9t4wCZX" width="100%" height="400" frameborder="0"></iframe>
-      <iframe src="https://youtube.com/shorts/nPN3DQnrUGw?si=-z2SnSFt7X6bAuKK" width="100%" height="400" frameborder="0"></iframe>
-    </div>
   </div>
   
   <button onclick="window.location.href='withdrawal.html'">Go to Withdrawal Page</button>
   <button onclick="window.location.href='referral.html'">Go to Referral Page</button>
   
   <script>
-    // Watch Ad Button Click - Open ad.html
+    // YouTube ad video links
+    const adLinks = [
+      "https://www.youtube.com/watch?v=EfdvmBgWEvE",
+      "https://www.youtube.com/shorts/nR3mHoeaNrU",
+      "https://www.youtube.com/watch?v=trr3AC1jiEk",
+      "https://www.youtube.com/shorts/nPN3DQnrUGw"
+    ];
+
     document.getElementById('watchAdBtn').addEventListener('click', function() {
-      window.open('ad.html', '_blank');
+      // Random ad open in new tab
+      const randomAd = adLinks[Math.floor(Math.random() * adLinks.length)];
+      window.open(randomAd, '_blank');
     });
   </script>
 
